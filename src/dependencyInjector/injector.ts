@@ -12,6 +12,14 @@ export default class DependencyInjector {
     this.injectAll = this.injectAll.bind(this);
   }
 
+  initialize(): void {
+    /* the constructor ensures that the depInjector is initialized.
+    However, to be sure that tree-shaking during the webpack process doesn't
+    remove the import (in the edgecase that no annotations are used), initialize()
+    provides a tie to stop tree-shaking and ensure construction. */
+    return void 0;
+  };
+
   injectAll(constructor: Function): void {
     constructor.prototype.instance = this.instance;
   }

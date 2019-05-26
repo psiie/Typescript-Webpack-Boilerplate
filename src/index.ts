@@ -1,10 +1,20 @@
-import { inject } from './dependencyInjector';
+import dependencyInjector, { inject } from './dependencyInjector';
+import jsonCube from './models/cube.json';
+import Model from './components/3d-engine/model';
 
-@inject('Counter')
+import './global-styles';
+
+@inject('clock')
 export class Main {
+  instance: {
+    clock: Object,
+  }
+
   constructor() {
-    const string: String = 'hello world!';
-    console.log(string, this);
+    const { clock } = this.instance;
+    dependencyInjector.initialize();
+    const cube = new Model(jsonCube, [0,0,0], [0,0,0], [10,10,10]);
+    
   }
 }
 

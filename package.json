@@ -18,7 +18,8 @@
     "webpack-cli": "^3.3.2"
   },
   "scripts": {
-    "dev": "webpack --watch",
+    "start": "cross-env NODE_ENV=production yarn dev",
+    "dev": "cross-env NODE_ENV=development webpack --watch",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --color -p --progress --hide-modules --display-optimization-bailout",
     "clean": "rimraf build"
   }
